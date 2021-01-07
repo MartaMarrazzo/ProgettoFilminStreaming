@@ -20,7 +20,8 @@ import it.univpm.streamingmoviesModel.StreamingWebsite;
  * StringBuilder lo utilizziamo per costruire la stringa 
  * 
  *
- *°°°°°°°bisogna trasformare la stringa in jSON object e metterla in un jsonArray 
+ *°°°°°°°bisogna trasformare la stringa in jSON object e metterla in un jsonArray . 1
+ *
  */
 
 public class StreamingWebsiteRecord{
