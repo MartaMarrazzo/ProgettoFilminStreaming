@@ -16,7 +16,7 @@ public class StreamingWebsite extends StreamingWebsiteServiceIMPL {
 		return null;
 	}
 	
-	public StreamingWebsite( String Name,String Country,float UpdateTime, 
+	public StreamingWebsite( String Name,String Country, 
 			String UpdateDate,String CreateDate, boolean isDead ) {
 		this.setName(Name);
 		this.setCountry(Country);
