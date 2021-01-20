@@ -2,11 +2,9 @@ package it.univpm.streamingmoviesFilters;
 
 import java.util.ArrayList;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
 
 import it.univpm.streamingmoviesModel.StreamingWebsite;
-import it.univpm.streamingmoviesUtil.StreamingWebsiteDomains;
 
 public class Filter {
 protected String category;
@@ -34,17 +32,17 @@ public ArrayList<Filter> getCreateDateFilter() {
 	}
 
 
-public void parseFilter(JSONObject body) throws JSONException {
+public void parseFilter(JSONObject body) {
 	Filter f;
-	if (body.has("country")) {
+	if ( body.containsKey("country")) {
 		f = new HostingNationFilter((String) body.get("country"));
 		filteringCountries.add(f);
 	}
-	if (body.has("create_date")) {
+	if (body.containsKey("create_date")) {
 		f = new FirstUpdateFilter((String) body.get("create_date"));
 		filteringCountries.add(f);
 	}
-	if (body.has("update_date")) {
+	if (body.containsKey("update_date")) {
 		f = new LastUpdateFilter((String) body.get("update_date"));
 		filteringCountries.add(f);
 	}

@@ -62,12 +62,9 @@ public ResponseEntity<Object> returnFilters(@RequestBody JSONObject body,
 		@RequestParam(value = "update_date", defaultValue = "") String updatedate,
 		@RequestParam(value = "country", defaultValue = "") String country)
 
-{
-	
+{	
 	url = "https://api.domainsdb.info/v1/domains/search?limit=50&domain=" + FirstKeyword;
 	return new ResponseEntity<>(website.returnFilters(body,url),HttpStatus.OK);
 }
-
-
-}
+ }
 

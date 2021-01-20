@@ -2,9 +2,8 @@ package it.univpm.streamingmoviesService;
 
 import java.util.ArrayList;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.yaml.snakeyaml.parser.ParserException;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 import it.univpm.streamingmoviesFilters.Filter;
 import it.univpm.streamingmoviesModel.StreamingWebsite;
@@ -14,12 +13,20 @@ public class StreamingWebsiteServiceIMPL implements StreamingWebsiteService{
 
 	@SuppressWarnings("static-access")
 	@Override
-	public ArrayList<StreamingWebsite> getWebsites(String url) throws ParserException {
-		StreamingWebsiteDomains website = new StreamingWebsiteDomains();
-		this.websites = website.GetJsonObject(url);
-		System.out.println(this.websites);
-		return websites;
-	}
+	public ArrayList<StreamingWebsite> getWebsites(String url){
+	
+			StreamingWebsiteDomains website = new StreamingWebsiteDomains();	
+			try {
+				this.websites = website.GetJsonObject(url);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println(this.websites);
+			return websites;
+			}
+			
+
 
 	@Override
 	public ArrayList<StreamingWebsite> returnFilters(JSONObject body, String url)  {
@@ -30,12 +37,9 @@ public class StreamingWebsiteServiceIMPL implements StreamingWebsiteService{
 		//ArrayList<StreamingWebsite> websiteslist = website.GetJsonObject(url);
 		ArrayList<StreamingWebsite> websiteslist = new ArrayList<>();
 		Filter fil = new Filter();
-		try {
+		
 			fil.parseFilter(body);
-		} catch (JSONException e) {
-			
-			e.printStackTrace();
-		}
+		
 		if (fil.getCountryFilter().isEmpty())
 			for (Filter filt : fil.getCountryFilter())
 				filt.toFilter(websiteslist);
