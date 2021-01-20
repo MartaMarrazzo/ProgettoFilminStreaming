@@ -48,6 +48,7 @@ public void parseFilter(JSONObject body) throws JSONException {
 		f = new LastUpdateFilter((String) body.get("update_date"));
 		filteringCountries.add(f);
 	}
-	}
+	
+}
 		
 }

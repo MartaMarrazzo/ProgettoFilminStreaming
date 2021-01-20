@@ -12,7 +12,6 @@ public class HostingNationFilter extends Filter {
 	}
 
 	
-		
 	public void toFilter(ArrayList<StreamingWebsite> ListToFilter) {
 		ArrayList<StreamingWebsite> filtered = new ArrayList<StreamingWebsite>();
 		for (StreamingWebsite website : ListToFilter) {
