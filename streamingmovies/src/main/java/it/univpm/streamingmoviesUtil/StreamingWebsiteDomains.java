@@ -8,10 +8,10 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.*;
+
 import org.apache.tomcat.util.json.JSONParser;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import it.univpm.streamingmoviesModel.StreamingWebsite;
@@ -27,17 +27,16 @@ import it.univpm.streamingmoviesModel.StreamingWebsite;
  * StringBuilder lo utilizziamo per costruire la stringa 
  * 
  *
-
  
-
  *
  */
 
 public class StreamingWebsiteDomains {
-	   public JSONParser parser= new JSONParser();
+	   public String input;
+	   public JSONParser parser= new JSONParser(input);
        public JSONObject jo= new JSONObject();
     
-    public ArrayList<StreamingWebsite> GetJsonObject(String requestUrl) throws ParseException{
+    public ArrayList<StreamingWebsite> GetJsonObject(String requestUrl) throws ParseException, Exception{
      
            ArrayList<StreamingWebsite> result = new ArrayList<>();
          
@@ -90,7 +89,7 @@ public class StreamingWebsiteDomains {
         try {
         while ( (input=reader.readLine()) != null) {    
             sb.append('\n');
-            jo = (JSONObject) parser.parse(input);
+            jo = (JSONObject) parser.parse();
             /*
              * con il ciclo for accediamo al JSONObject e inseriamo i vari campi nei tipi corrispondenti per usarli nelle varie classi
              */
@@ -117,5 +116,3 @@ public class StreamingWebsiteDomains {
     return (ArrayList<StreamingWebsite>)result;
 }    
 }
-
-
