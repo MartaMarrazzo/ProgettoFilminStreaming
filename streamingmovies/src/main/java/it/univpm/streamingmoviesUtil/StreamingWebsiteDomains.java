@@ -1,7 +1,5 @@
 package it.univpm.streamingmoviesUtil;
 
- 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,16 +14,12 @@ import org.apache.tomcat.util.json.JSONParser;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.ParseException;
 
- 
-
 import it.univpm.streamingmoviesModel.StreamingWebsite;
 
- 
 
 /**
  * 
- * @author marra
- * @param <JSONArray>
+ * @param <JSONArray> serve per salvare il JSONObject e 
  * @requestUrl corrisponde all'url che dobbiamo leggere (diversa a seconda delle
  * keyword cui è associato 'elenco dei siti streaming)
  * InputStreamReader prende lo stream di URL
@@ -39,14 +33,12 @@ import it.univpm.streamingmoviesModel.StreamingWebsite;
  *
  */
 
- 
-
 public class StreamingWebsiteDomains {
-    
+	   public JSONParser parser= new JSONParser();
+       public JSONObject jo= new JSONObject();
     
     public ArrayList<StreamingWebsite> GetJsonObject(String requestUrl) throws ParseException{
-        JSONParser parser= new JSONParser();
-        JSONObject jo= new JSONObject();
+     
            ArrayList<StreamingWebsite> result = new ArrayList<>();
          
         URL url = null;
@@ -99,23 +91,29 @@ public class StreamingWebsiteDomains {
         while ( (input=reader.readLine()) != null) {    
             sb.append('\n');
             jo = (JSONObject) parser.parse(input);
+            /*
+             * con il ciclo for accediamo al JSONObject e inseriamo i vari campi nei tipi corrispondenti per usarli nelle varie classi
+             */
+            JSONArray ja = (JSONArray) jo.get("domains");
+            for(Object o: ja) {
+                jo = (JSONObject) o;
+                
+                String Name =(String) jo.get("domain");
+                String CreateDate = (String) jo.get("create_date");
+                String UpdateDate=(String) jo.get("update_date");
+                String Country=(String) jo.get("contry");
+                Boolean IsDead=(Boolean) jo.get("isDead");
+                Integer quantity=(Integer) jo.get("total");
+                Integer updateTime=(Integer) jo.get("time"); 
+                StreamingWebsite st= new StreamingWebsite(Name, CreateDate, UpdateDate, Country, IsDead, updateTime, quantity);
+                result.add(st);
         }
-    } catch (IOException e) {
+    }
+  }
+    catch (IOException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
-    }
-    JSONArray ja = (JSONArray) jo.get("domains");
-    for(Object o: ja) {
-        jo = (JSONObject) o;
-        
-        String Name =(String) jo.get("domain");
-        String CreateDate = (String) jo.get("create_date");
-        String UpdateDate=(String) jo.get("update_date");
-        String Country=(String) jo.get("contry");
-        Boolean IsDead=(Boolean) jo.get("isDead");
-        StreamingWebsite st= new StreamingWebsite(Name, CreateDate, UpdateDate, Country, IsDead);
-        result.add(st);
-}    
+    }    
     return (ArrayList<StreamingWebsite>)result;
 }    
 }
