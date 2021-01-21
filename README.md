@@ -34,4 +34,4 @@ studentesse
 --------------
 Marta Marrazzo (50%)
 
-Isabella Marini (50 %)
+Isabella Marini (50%)
