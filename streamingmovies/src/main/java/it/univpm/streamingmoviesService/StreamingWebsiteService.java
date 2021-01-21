@@ -15,7 +15,7 @@ public interface StreamingWebsiteService {
 	
 	public abstract  ArrayList<StreamingWebsite> returnFilters(JSONObject filters,String url);
 	
-	public abstract ArrayList<StreamingWebsite> returnStatistics();
+	public abstract JSONObject returnStatistics();
 
 
 }
