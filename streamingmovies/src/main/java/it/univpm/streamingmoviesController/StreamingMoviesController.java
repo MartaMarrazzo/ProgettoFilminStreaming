@@ -67,5 +67,19 @@ public ResponseEntity<Object> returnFilters(@RequestBody JSONObject body,
 	url = "https://api.domainsdb.info/v1/domains/search?limit=50&domain=" + FirstKeyword;
 	return new ResponseEntity<>(website.returnFilters(body,url),HttpStatus.OK);
 }
- }
+
+
+@RequestMapping(value="statistics",method = RequestMethod.GET)
+public ResponseEntity<Object> returnStatistics(@RequestBody JSONObject body,
+	 @RequestParam(name = "domain", defaultValue = "") String FirstKeyword,
+     @RequestParam(value = "create_date", defaultValue = "") String createdate,
+     @RequestParam(value = "update_date", defaultValue = "") String updatedate,
+     @RequestParam(value = "country", defaultValue = "") String country)
+{
+url = "https://api.domainsdb.info/v1/domains/search?limit=50&domain=" + FirstKeyword;
+return new ResponseEntity<>(website.returnStatistics(),HttpStatus.OK);
+}
+
+}
+
 
