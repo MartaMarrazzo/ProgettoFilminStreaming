@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
-import it.univpm.streamingmoviesFilter.*;
+import it.univpm.streamingmoviesFilters.Filter;
 import it.univpm.streamingmoviesModel.StreamingWebsite;
 import it.univpm.streamingmoviesStats.*;
 import it.univpm.streamingmoviesUtil.StreamingWebsiteDomains;
@@ -13,7 +13,6 @@ import it.univpm.streamingmoviesUtil.StreamingWebsiteDomains;
 public class StreamingWebsiteServiceIMPL implements StreamingWebsiteService{
 	ArrayList<StreamingWebsite> websites;
 	@Override
-<<<<<<< HEAD
 	public ArrayList<StreamingWebsite> getWebsites(String url) throws Exception {
 		StreamingWebsiteDomains website = new StreamingWebsiteDomains();
 		try {
@@ -24,22 +23,8 @@ public class StreamingWebsiteServiceIMPL implements StreamingWebsiteService{
 		System.out.println(this.websites);
 		return websites;
 	}
-=======
-	public ArrayList<StreamingWebsite> getWebsites(String url){
-	
-			StreamingWebsiteDomains website = new StreamingWebsiteDomains();	
-			try {
-				this.websites = website.GetJsonObject(url);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println(this.websites);
-			return websites;
-			}
-			
 
->>>>>>> branch 'main' of https://github.com/MartaMarrazzo/ProgettoFilminStreaming
+
 
 	@Override
 	public ArrayList<StreamingWebsite> returnFilters(JSONObject body, String url)  {
@@ -49,15 +34,7 @@ public class StreamingWebsiteServiceIMPL implements StreamingWebsiteService{
 		StreamingWebsiteDomains website = new StreamingWebsiteDomains();
 		ArrayList<StreamingWebsite> websiteslist = new ArrayList<>();
 		Filter fil = new Filter();
-<<<<<<< HEAD
-=======
-		
->>>>>>> branch 'main' of https://github.com/MartaMarrazzo/ProgettoFilminStreaming
-			fil.parseFilter(body);
-<<<<<<< HEAD
-=======
-		
->>>>>>> branch 'main' of https://github.com/MartaMarrazzo/ProgettoFilminStreaming
+		fil.parseFilter(body);
 		if (fil.getCountryFilter().isEmpty())
 			for (Filter filt : fil.getCountryFilter())
 				filt.toFilter(websiteslist);
