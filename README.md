@@ -32,6 +32,6 @@ Tale ricerca viene effettuata seguendo le rotte..
 
 studentesse 
 --------------
-Marta Marrazzo, 50%
+Marta Marrazzo (50%)
 
-Isabella Marini, 50 %
+Isabella Marini (50 %)
